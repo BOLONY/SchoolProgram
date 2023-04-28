@@ -29,5 +29,17 @@ public class SchoolDao {
 		return false;
 		//못찾으면 false 리턴
 	}//delete()
+	
+	public ArrayList<Student> search(String name) {
+		ArrayList<Student> result = new ArrayList<Student>();
+		
+		for(Student s: list) {
+			if(s.getName().contains(name)) {
+				result.add(s);
+			}
+		}
+		return result;
+	}// ArrayList<Student> search
+	
 
 }//class SchoolDao

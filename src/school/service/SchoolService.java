@@ -1,8 +1,9 @@
 package school.service;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 
 import school.dao.SchoolDao;
+
 import school.vo.Student;
 
 public class SchoolService {
@@ -21,5 +22,11 @@ public class SchoolService {
 		boolean result = dao.delete(id);
 		return result;
 	}
+	
+	public ArrayList<Student> search(String name) {
+		ArrayList<Student> result = dao.search(name);
+		return result;
+	}
+	
 
 }

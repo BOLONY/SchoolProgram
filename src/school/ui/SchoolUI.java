@@ -9,6 +9,7 @@ import school.vo.Student;
 
 
 public class SchoolUI {
+	//1
 	Scanner keyin = new Scanner(System.in);
 	SchoolService service = new SchoolService();
 	String choice;
@@ -18,6 +19,10 @@ public class SchoolUI {
 		while (true) {
 			mainMenu();
 			choice = keyin.next();
+			//조건에 맞는 Student 객체들의 목록
+			//size가 0이냐고 비교해도 되고 ㅇㅇ
+			
+			//2
 			switch(choice) {
 				case "1": input(); break;
 				case "2": list(); break;
@@ -30,6 +35,8 @@ public class SchoolUI {
 			}//switch
 		}//while
 	}//SchoolUI()
+	
+	
 	
 	//현재 이 생성자 안에서 쓸거라 private써도 된다.
 	//어차피 패키지 달라서 다른애들이 못부르니 안써도 그만.
@@ -69,12 +76,37 @@ public class SchoolUI {
 	}
 	
 	void list() {
+		System.out.println();
+//		System.out.println("2. 전체목록 출력");
 		ArrayList<Student> studentList = service.getList();
 		System.out.println(studentList);
-	}
-	void search() {
 		
+//		for(Student s: studentList) {
+//			System.out.println(s);
+//		}
 	}
+	
+	void search() {
+		System.out.println();
+		System.out.println("[3. 검색]");
+		System.out.println("검색할 이름: ");
+		String name = keyin.next();
+		ArrayList<Student> studentList = service.search(name);
+		
+//		if(studentList.size()==0)
+		if(studentList.isEmpty()) {
+			System.out.println("검색 결과가 없습니다.");
+		}
+		else {
+			System.out.println("이름\t학번\t총점\t평균");
+			System.out.println("------------------------");
+			for(Student s : studentList) {
+				System.out.println(s.getName() + "\t" + s.getId() + "\t" + s.getTotal()+ "\t" + s.getAverage());
+				}
+//			System.out.println(studentList);
+		}
+	}//search()
+	
 	void delete() {
 		String code = keyin.next();
 		service.deleteStudent(code);
